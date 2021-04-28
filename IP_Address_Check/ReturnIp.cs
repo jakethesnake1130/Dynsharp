@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IP_Address_Check
 {
-    class ReturnIp
+    public class ReturnIp
     {
         /*
          * This class is the final stage in the process
@@ -81,7 +81,7 @@ namespace IP_Address_Check
              * This uses the Parameter defined below the class to remove all elements without any IP addresses listed
              * This ensures that any blocks for unused connections or meaningless headers will be omitted from the final output
              */
-            allIpData.RemoveAll(CheckForIp);
+            allIpData.RemoveAll(LacksIP);
 
             /*
              * allIpData is returned and represents the final output to be stored in the text file
@@ -89,18 +89,11 @@ namespace IP_Address_Check
             return allIpData;
         }
 
-        public static bool CheckForIp(string s)
+        public static bool LacksIP(string s)
         {
             Regex testIp = new(@"\d+\.\d+\.\d+\.\d+");
-            
-            if(testIp.IsMatch(s))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+
+            return !testIp.IsMatch(s);
         }
     }
 }

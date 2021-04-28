@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Serilog;
 using Serilog.Events;
 using System.IO;
+using System.Reflection;
 
 namespace IP_Address_Check
 {
@@ -16,6 +17,15 @@ namespace IP_Address_Check
 
         public static void Main(string[] args)
         {
+            using (var stream = Assembly
+                .GetExecutingAssembly()
+                .GetManifestResourceStream($"{typeof(Program).Namespace}.readmycontent.txt"))
+            using (var reader = new StreamReader(stream))
+            {
+
+                var content = reader.ReadToEnd();
+                Console.WriteLine(content);
+            }
             /*
              * This block serializes the appsettings.json file, allowing the settings to be applied to the program
              * It uses the custom class found at the bottom of the namespace
