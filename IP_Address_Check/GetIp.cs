@@ -2,7 +2,7 @@
 using System;
 using System.Diagnostics;
 
-namespace IP_Address_Check
+namespace Dynsharp
 {
     internal class GetIp
     {

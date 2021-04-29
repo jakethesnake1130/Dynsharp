@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace IP_Address_Check
+namespace Dynsharp
 {
     class ReturnIp
     {

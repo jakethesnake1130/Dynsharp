@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>dotnet-IP_Address_Check-6B823287-A79D-4540-BC0E-D027AFC3F331</UserSecretsId>
-    <RootNamespace>IP_Address_Check</RootNamespace>
+    <UserSecretsId>dotnet-Dynsharp-6B823287-A79D-4540-BC0E-D027AFC3F331</UserSecretsId>
+    <RootNamespace>Dynsharp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

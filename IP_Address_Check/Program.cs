@@ -9,7 +9,7 @@ using Serilog;
 using Serilog.Events;
 using System.IO;
 
-namespace IP_Address_Check
+namespace Dynsharp
 {
     public class Program
     {
