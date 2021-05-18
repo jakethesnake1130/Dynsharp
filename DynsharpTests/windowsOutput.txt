@@ -1,0 +1,46 @@
+﻿Windows IP Configuration
+
+
+Unknown adapter Mullvad:
+
+   Connection-specific DNS Suffix  . :
+   Link-local IPv6 Address . . . . . : fe80::34d4:b408:b53b:b7f6%33
+   IPv4 Address. . . . . . . . . . . : 10.14.0.10
+   Subnet Mask . . . . . . . . . . . : 255.255.0.0
+   Default Gateway . . . . . . . . . : 10.14.0.1
+
+Ethernet adapter Ethernet:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Ethernet adapter Hamachi:
+
+   Connection-specific DNS Suffix  . :
+   IPv6 Address. . . . . . . . . . . : 2620:9b::1977:38dd
+   Link-local IPv6 Address . . . . . : fe80::1007:d85d:fb13:a349%15
+   IPv4 Address. . . . . . . . . . . : 25.119.56.221
+   Subnet Mask . . . . . . . . . . . : 255.0.0.0
+   Default Gateway . . . . . . . . . : 2620:9b::1900:1
+                                       25.0.0.1
+
+Wireless LAN adapter Local Area Connection* 9:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Wireless LAN adapter Local Area Connection* 10:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Wireless LAN adapter Wi-Fi:
+
+   Connection-specific DNS Suffix  . : hsd1.ut.comcast.net
+   IPv6 Address. . . . . . . . . . . : 2601:681:5680:aad0:89b5:7ad1:a825:3969
+   Temporary IPv6 Address. . . . . . : 2601:681:5680:aad0:4d98:2e02:381c:d775
+   Link-local IPv6 Address . . . . . : fe80::89b5:7ad1:a825:3969%12
+   IPv4 Address. . . . . . . . . . . : 10.0.0.86
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : fe80::5eb0:66ff:feea:5f19%12
+                                       10.0.0.1

@@ -6,22 +6,24 @@ namespace Dynsharp
 {
     internal class GetIp
     {
-        public static string Check()
+        private readonly IConfiguration Configuration;
+
+        public GetIp(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public string Check()
         {
             /*
              * This block serializes the appsettings.json file, allowing the settings to be applied to the program
              * It uses the custom class found at the bottom of the namespace
              */
-            var config = new ConfigurationBuilder()
-                            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                            .AddJsonFile("appsettings.json").Build();
-            var section = config.GetSection(nameof(GetIpOptions));
-            var getIpOptions = section.Get<GetIpOptions>();
 
             /*
              * Here's where the serialized appsettings.json gets assigned to variables to be used in the program
              */
-            string fileName = getIpOptions.FileName;
+            string fileName = Configuration["GetIpOptions:FileName"];
 
             /*
              * This block generates the IP information output
@@ -46,10 +48,5 @@ namespace Dynsharp
 
             return result;
         }
-    }
-
-    public class GetIpOptions
-    {
-        public string FileName { get; set; }
     }
 }

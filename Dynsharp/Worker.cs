@@ -13,28 +13,22 @@ namespace Dynsharp
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
+        private readonly IConfiguration _config;
 
-        public Worker(ILogger<Worker> logger)
+        public Worker(ILogger<Worker> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _config = configuration;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            /*
-             * This block serializes the appsettings.json file, allowing the settings to be applied to the program
-             * It uses the custom class found at the bottom of the namespace
-             */
-            var config = new ConfigurationBuilder()
-                            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                            .AddJsonFile("appsettings.json").Build();
-            var section = config.GetSection(nameof(WorkerOptions));
-            var workerOptions = section.Get<WorkerOptions>();
 
             /*
-             * Here's where the serialized appsettings.json gets assigned to variables to be used in the program
+             * Here's where the value from appsettings.json gets assigned to a variable
              */
-            int timerDelay = workerOptions.TimerDelayInSeconds;
+            int timerDelay = _config.GetValue<int>("WorkerOptions:TimerDelayInSeconds");
+            string fileName = _config["GetIpOptions:FileName"];
 
             /*
             * This is the main engine of the program
@@ -45,12 +39,32 @@ namespace Dynsharp
             * 
             * timerDelay is determined by the admin in appsettings.json
             */
+            GetIp getIp = new GetIp(_config);
+
             while (!stoppingToken.IsCancellationRequested)
             {
+                List<string> ipList = new List<string>();
+                List<string> relevantIp = new List<string>();
+
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                string rawIp = GetIp.Check();
-                List<string> ipList = ParseIp.SplitIp(rawIp);
-                List<string> relevantIp = ReturnIp.RelevantIp(ipList);
+                string rawIp = getIp.Check();
+
+                switch (fileName)
+                {
+                    case "ipconfig":
+                        ipList = ParseIp.WindowsParse(rawIp);
+                        relevantIp = ReturnIp.WindowsReturn(ipList);
+
+                        break;
+
+                    case "ip addr show":
+                        ipList = ParseIp.LinuxParse(rawIp);
+                        relevantIp = ReturnIp.LinuxReturn(ipList);
+                        break;
+
+                    default:
+                        break;
+                }
                 
                 foreach(string item in relevantIp)
                 {
@@ -60,10 +74,5 @@ namespace Dynsharp
                 await Task.Delay((timerDelay * 1000), stoppingToken);
             }
         }
-    }
-
-    public class WorkerOptions
-    {
-        public int TimerDelayInSeconds { get; set; }
     }
 }
