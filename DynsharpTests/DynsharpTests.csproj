@@ -7,12 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="linuxOutput.txt" />
+		<None Remove="LinuxOutput.txt" />
 		<None Remove="windowsOutput.txt" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="linuxOutput.txt" />
+		<EmbeddedResource Include="LinuxOutput.txt" />
 		<EmbeddedResource Include="windowsOutput.txt" />
 	</ItemGroup>
 
