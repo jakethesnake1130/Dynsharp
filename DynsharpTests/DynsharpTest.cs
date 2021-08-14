@@ -2,6 +2,7 @@ using NUnit.Framework;
 using Dynsharp;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
@@ -17,7 +18,7 @@ namespace DynsharpTests
         {
             using (var stream = Assembly
                 .GetExecutingAssembly()
-                .GetManifestResourceStream("DynsharpTests.linuxOutput.txt"))
+                .GetManifestResourceStream("DynsharpTests.LinuxOutput.txt"))
             using (var reader = new StreamReader(stream))
             {
                 linuxOutput = reader.ReadToEnd();
@@ -42,7 +43,14 @@ namespace DynsharpTests
 
         [Test]
         public void WindowsProperParse()
-        {
+       {
+          bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+
+          if (!isWindows)
+          {
+            Assert.Ignore("Skipping on a non-Windows operating system");
+          }
+
             List<string> winParsed = ParseIp.WindowsParse(windowsOutput);
             string test1 = "\n";
             string test2 = "";
@@ -58,6 +66,12 @@ namespace DynsharpTests
         [Test]
         public void LinuxProperParse()
         {
+          bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+
+          if (!isLinux)
+          {
+            Assert.Ignore("Skipping on a non-Linux operating system");
+          }
             List<string> linParsed = ParseIp.LinuxParse(linuxOutput);
             string test1 = "\n";
             string test2 = "";
@@ -73,6 +87,12 @@ namespace DynsharpTests
         [Test]
         public void WindowsProperReturn()
         {
+          bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+
+          if (!isWindows)
+          {
+            Assert.Ignore("Skipping on a non-Windows operating system");
+          }
             List<string> winReturn = ReturnIp.WindowsReturn(ParseIp.WindowsParse(windowsOutput));
             Regex testIp = new(@"\d+\.\d+\.\d+\.\d+");
 
@@ -86,6 +106,13 @@ namespace DynsharpTests
         [Test]
         public void LinuxProperReturn()
         {
+          bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+
+          if (!isLinux)
+          {
+            Assert.Ignore("Skipping on a non-Linux operating system");
+          }
+
             List<string> linReturn = ReturnIp.LinuxReturn(ParseIp.LinuxParse(linuxOutput));
             Regex testIp = new(@"\d+\.\d+\.\d+\.\d+");
 

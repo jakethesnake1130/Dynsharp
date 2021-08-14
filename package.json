@@ -1,0 +1,36 @@
+{
+  "name": "dynsharp",
+  "version": "0.0.1",
+  "description": "Update dynamic DNS entries for accounts on Epik (initially).",
+  "main": "index.js",
+  "scripts": {
+    "test": "dotnet test ./**/*Test*.csproj",
+    "prepare": "husky install",
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mishfit/Dynsharp.git"
+  },
+  "keywords": [
+    "dynamic",
+    "DNS",
+    "IP",
+    "address"
+  ],
+  "author": "Jacob Carriero <jpcarriero2@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/mishfit/Dynsharp/issues"
+  },
+  "homepage": "https://github.com/mishfit/Dynsharp#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "husky": "^7.0.0",
+    "standard-version": "^9.3.1"
+  }
+}
